@@ -1,0 +1,22 @@
+services:
+  writer:
+    image: ghcr.io/mathlopez/java-ios-docker:latest
+    command:
+      [
+        "--implementation=BUFFERED_BINARY",
+        "/data/100-bytes.bin",
+        "write",
+        "--size=100"
+      ]
+    volumes:
+      - .:/data
+  reader:
+    image: ghcr.io/mathlopez/java-ios-docker:latest
+    command:
+      [
+        "--implementation=BUFFERED_BINARY",
+        "/data/100-bytes.bin",
+        "read"
+      ]
+    volumes:
+      - .:/data
