@@ -43,3 +43,6 @@ Thumbs.db
 
 # Folder config file
 [Dd]esktop.ini
+
+## Remove if idea config is needed
+.idea/
