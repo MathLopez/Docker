@@ -101,25 +101,51 @@ docker image prune
 ```sh
 # Start all services defined in the docker-compose.yml file
 docker compose up
-
 # Start all services defined in the docker-compose.yml file in background
 docker compose up -d
-
 # Display all running services
 docker compose ps
-
 # Stop all services defined in the docker-compose.yml file
 docker compose down
-
 # Check the logs of a service
 docker compose logs <service-name>
-
 # Check the logs of all services defined in the docker-compose.yml file
 docker compose logs
-
 # Follow the logs of a service
 docker compose logs -f <service-name>
 ```
+
+# docker-compose.yaml
+``` yaml
+version: '2'
+
+networks:
+  my-network:
+    external: true
+
+services:
+  service-name:
+    image: nginx:1.27
+    environment:
+      - VARIABLE_NAME=value
+    env_file: [.env, .other.env]
+    ports:
+      - 8080:80 #host-port:container-port
+    expose: ["3000"]
+    volumes:
+      - local-dir:container-dir
+      - ./html:/usr/share/nginx/html
+    command: command to run
+    entrypoint: /app/start.sh
+    networks:
+      - my-network
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+  other-service-name:
+    ...
+```
+
 
 # Github registry
 
