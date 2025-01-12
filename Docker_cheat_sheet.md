@@ -115,7 +115,7 @@ docker compose logs
 docker compose logs -f <service-name>
 ```
 
-# docker-compose.yaml
+### docker-compose.yaml
 ``` yaml
 version: '2'
 
